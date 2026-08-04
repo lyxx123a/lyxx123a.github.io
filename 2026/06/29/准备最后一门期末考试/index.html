@@ -463,6 +463,38 @@
             </div>
 
             
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="waline"></div>
+  <script type="module">
+    Fluid.utils.loadComments('#waline', function() {
+      Fluid.utils.createCssLink('https://lib.baomitu.com/waline/3.6.0/waline.css')
+      import('https://lib.baomitu.com/waline/3.6.0/waline.js').then(({ init }) => {
+        var options = Object.assign(
+          {"serverURL":"https://waline-hello-world-gamma.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {
+            el: '#waline',
+            path: window.location.pathname
+          }
+        )
+        init(options);
+        Fluid.utils.waitElementVisible('#waline .vcontent', () => {
+          var imgSelector = '#waline .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
           </article>
         </div>
       </div>
