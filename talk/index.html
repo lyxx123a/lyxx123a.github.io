@@ -19,17 +19,21 @@
   <meta name="author" content="flint">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://example.com/tags/index.html">
+    <meta name="description" content="加载中...        &#x2F;&#x2F; 替换为你的 Memos 域名和用户 ID (名称&#x2F;UID)   const MEMOS_HOST &#x3D; &quot;https:&#x2F;&#x2F;your-memos-domain.com&quot;;   &#x2F;&#x2F; 0.30+ 版本的 API Endpoint   const MEMOS_API &#x3D; &#96;${MEMOS_HOST}&#x2F;api&#x2F;v1&#x2F;memos?pageSize&#x3D;30&#96;;    fetch(">
+<meta property="og:type" content="website">
+<meta property="og:title" content="动态&#x2F;瞬间">
+<meta property="og:url" content="http://example.com/talk/index.html">
 <meta property="og:site_name" content="jhx&#39;s blog">
+<meta property="og:description" content="加载中...        &#x2F;&#x2F; 替换为你的 Memos 域名和用户 ID (名称&#x2F;UID)   const MEMOS_HOST &#x3D; &quot;https:&#x2F;&#x2F;your-memos-domain.com&quot;;   &#x2F;&#x2F; 0.30+ 版本的 API Endpoint   const MEMOS_API &#x3D; &#96;${MEMOS_HOST}&#x2F;api&#x2F;v1&#x2F;memos?pageSize&#x3D;30&#96;;    fetch(">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-08-04T12:44:09.798Z">
+<meta property="article:modified_time" content="2026-08-04T12:44:09.798Z">
 <meta property="article:author" content="flint">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>标签 - jhx&#39;s blog</title>
+  <title>动态/瞬间 - jhx&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -83,7 +87,7 @@
   <header>
     
 
-<div class="header-inner" style="height: 80vh;">
+<div class="header-inner" style="height: 60vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -344,17 +348,13 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="标签"></span>
+            <span id="subtitle" data-typed-text="动态/瞬间"></span>
           
         </div>
 
         
       </div>
 
-      
-        <div class="scroll-down-bar">
-          <i class="iconfont icon-arrowdown"></i>
-        </div>
       
     </div>
   </div>
@@ -377,9 +377,61 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="text-center tagcloud">
-  <a href="/tags/%E5%AD%A6%E4%B9%A0/" style="font-size: 30px; color: #337ab7">学习</a> <a href="/tags/%E6%8A%98%E8%85%BE/" style="font-size: 15px; color: #bbe">折腾</a> <a href="/tags/%E6%8E%A8%E8%8D%90/" style="font-size: 15px; color: #bbe">推荐</a> <a href="/tags/%E6%97%A5%E8%AF%AD/" style="font-size: 15px; color: #bbe">日语</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 15px; color: #bbe">随笔</a>
-</div>
+<article class="page-content">
+  <div id="memos-container">加载中...</div>
+
+<!-- 引入 FontAwesome 图标（可选，增强美观度） -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<script>
+  // 替换为你的 Memos 域名和用户 ID (名称/UID)
+  const MEMOS_HOST = "https://your-memos-domain.com";
+  // 0.30+ 版本的 API Endpoint
+  const MEMOS_API = `${MEMOS_HOST}/api/v1/memos?pageSize=30`;
+
+  fetch(MEMOS_API)
+    .then(res => res.json())
+    .then(data => {
+      const container = document.getElementById("memos-container");
+      container.innerHTML = "";
+      
+      const memos = data.memos || [];
+      if (memos.length === 0) {
+        container.innerHTML = "<p>暂无公开动态</p>";
+        return;
+      }
+
+      memos.forEach(memo => {
+        // 解析时间与内容
+        const date = new Date(memo.createTime).toLocaleString();
+        let content = memo.content || "";
+        
+        // 简单处理标签 #hashtag 美化
+        content = content.replace(/#([^\s#]+)/g, '<span class="memo-tag">#$1</span>');
+
+        // 构建卡片 HTML
+        const card = document.createElement("div");
+        card.className = "memo-card";
+        card.innerHTML = `
+          <div class="memo-header">
+            <span class="memo-time"><i class="fa-regular fa-clock"></i> ${date}</span>
+          </div>
+          <div class="memo-content">${content}</div>
+        `;
+        container.appendChild(card);
+      });
+    })
+    .catch(err => {
+      console.error(err);
+      document.getElementById("memos-container").innerHTML = "加载动态失败，请检查 API 连接或 CORS 设置。";
+    });
+</script>
+
+  
+
+</article>
+
+
 
               </div>
             </div>

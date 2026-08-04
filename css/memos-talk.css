@@ -1,0 +1,82 @@
+#memos-talk {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.memo-card {
+  position: relative;
+  margin-bottom: 24px;
+  padding: 24px;
+  border: 1px solid rgba(127, 127, 127, 0.18);
+  border-radius: 16px;
+  background: var(--board-bg-color, #fff);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.memo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+}
+
+.memo-content {
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+}
+
+.memo-content > :first-child {
+  margin-top: 0;
+}
+
+.memo-content > :last-child {
+  margin-bottom: 0;
+}
+
+.memo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.memo-tag {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(127, 127, 127, 0.1);
+  font-size: 13px;
+}
+
+.memo-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(127, 127, 127, 0.15);
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+.memo-comment-button,
+#memos-more {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+#memos-more {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 24px;
+  border-radius: 999px;
+  background: rgba(127, 127, 127, 0.12);
+}
+
+.memos-loading,
+.memos-empty,
+.memos-error {
+  padding: 40px;
+  text-align: center;
+}
