@@ -502,7 +502,7 @@
       Fluid.utils.createCssLink('https://lib.baomitu.com/waline/3.6.0/waline.css')
       import('https://lib.baomitu.com/waline/3.6.0/waline.js').then(({ init }) => {
         var options = Object.assign(
-          {"serverURL":"https://waline-hello-world-gamma.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10},
+          {"serverURL":"https://waline-hello-world-gamma.vercel.app","path":"window.location.pathname","meta":["nick","mail","link"],"requiredMeta":["nick"],"lang":"zh-CN","emoji":["https://cdn.jsdelivr.net/gh/walinejs/emojis/weibo"],"dark":"html[data-user-color-scheme=\"dark\"]","wordLimit":0,"pageSize":10,"login":"force"},
           {
             el: '#waline',
             path: window.location.pathname
